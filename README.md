@@ -1,0 +1,1 @@
+# plugins-magnify-suggestive-search
