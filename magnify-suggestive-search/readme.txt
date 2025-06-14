@@ -2,9 +2,9 @@
 Contributors: themagnifico52
 Tags: woocommerce-search, ajax-search, search-by-keywords, product-search
 Requires at least: 5.2
-Tested up to: 6.7.1
+Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.0.9
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,9 @@ Suggestive Search Plugin can be effortlessly utilized across various WordPress b
 Suggestive Search Plugin for WordPress is a versatile tool that enhances the search experience on your site with real-time, predictive suggestions. Its easy integration ensures compatibility with a wide range of WordPress builders and themes without requiring any coding. By offering features like AJAX search, WooCommerce support, and customizable appearance options, it provides a seamless, efficient, and user-friendly solution to boost content discovery and improve user engagement. Elevate your site’s search functionality effortlessly and make finding content easier than ever.
 
 == Changelog ==
+
+= 1.1.0 - 2025-13-06 =
+* Minor Bugs Fixes.
 
 = 1.0.9 - 2025-03-04 =
 * Minor Bugs Fixes.

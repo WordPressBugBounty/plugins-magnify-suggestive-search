@@ -110,9 +110,9 @@ function mnssp_dashboard_page() { ?>
                 </div>
                 <div class="mnssp-right-content">
                     <div class="mnsp-feat">
-                            <h1><?php echo esc_html('WordPress Theme Bundle - 115+ Templates');?></h1>
+                            <h1><?php echo esc_html('WordPress Theme Bundle - 120+ Templates');?></h1>
                             <ol>
-                                <li><?php echo esc_html('Access to all themes, both Free and Premium (115+).');?></li>
+                                <li><?php echo esc_html('Access to all themes, both Free and Premium (120+).');?></li>
                                 <li><?php echo esc_html('Includes 1 year of free updates for all themes.');?></li>
                                 <li><?php echo esc_html('One-time purchase with no hidden costs.');?></li>
                                 <li><?php echo esc_html('Complimentary installation with expert guidance.');?></li>

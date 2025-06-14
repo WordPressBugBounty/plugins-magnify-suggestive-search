@@ -170,8 +170,8 @@ function mnssp_admin_notice_with_html() {
     <div class="notice is-dismissible mnssp">
         <div class="mnssp-notice-banner-wrap" style="background-image: url(<?php echo esc_url( MNSSP_URL . 'assets/images/banner-bg.png'); ?>)">
             <div class="mnssp-notice-heading">
-              <h1 class="mnssp-main-head"><?php echo esc_html('WORDPRESS THEME BUNDLE 115+ Templates');?></h1>
-              <p class="mnssp-sub-head"><?php echo esc_html('Get 115+ WordPress Themes Worth  ');?><span><?php echo esc_html('$4999+');?></span></p>
+              <h1 class="mnssp-main-head"><?php echo esc_html('WORDPRESS THEME BUNDLE 120+ Templates');?></h1>
+              <p class="mnssp-sub-head"><?php echo esc_html('Get 120+ WordPress Themes Worth  ');?><span><?php echo esc_html('$4999+');?></span></p>
                 <div class="mnssp-notice-btn">
                     <a class="mnssp-buy-btn" target="_blank" href="<?php echo esc_url( MNSSP_MAIN_URL . 'products/wordpress-theme-bundle' ); ?>"><?php echo esc_html('Buy Now');?></a>
                 </div>

@@ -3,7 +3,7 @@
     Plugin Name: Magnify - Suggestive Search Plugin
     Plugin URI: 
     Description: Real-time search suggestions that display relevant results as users type. Easy to customize, fast, and responsive on all devices.
-    Version: 1.0.9
+    Version: 1.1.0
     Author: themagnifico52
     Author URI: https://www.themagnifico.net/
     License: GPL2
@@ -19,7 +19,7 @@ define( 'MNSSP_EXT_FILE', __FILE__ );
 define( 'MNSSP_URL', plugin_dir_url( MNSSP_EXT_FILE ) );
 define( 'MNSSP_PATH', plugin_dir_path( MNSSP_EXT_FILE ) );
 define( 'MNSSP_API_URL', 'https://license.themagnifico.net/api/general/' );
-define( 'MNSSP_VER', '1.0.9' );
+define( 'MNSSP_VER', '1.1.0' );
 define( 'MNSSP_MAIN_URL', 'https://www.themagnifico.net/' );
 
 add_action('admin_enqueue_scripts', 'mnssp_enqueue_admin_styles');
