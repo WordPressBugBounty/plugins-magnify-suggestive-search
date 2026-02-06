@@ -84,7 +84,7 @@
   background: #000;
   color: #FFF;
   border-radius: 5px !important;
-  height: 35px;
+  /* height: 35px; */
   display: flex;
   align-items: center;
   justify-content: center;

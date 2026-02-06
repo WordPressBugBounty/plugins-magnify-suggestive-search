@@ -65,6 +65,21 @@ ul#adminmenu #toplevel_page_mnssp_templates, ul#adminmenu #toplevel_page_mnssp_t
     margin-bottom: 28px;
 }
 
+.mnssp-notice-btn {
+    display: flex;
+    gap: 20px;
+}
+
+.mnssp-notice-btn .mnssp-buy-btn {
+    background-color: #f15b26;
+    color: #fff;
+}
+
+.mnssp-notice-btn .mnssp-templates-btn {
+    background-color: #fcb03b;
+    color: #000;
+}
+
 .mnssp-notice-heading .mnssp-notice-btn a {
     display: block;
     margin-top: 15px;
@@ -73,9 +88,7 @@ ul#adminmenu #toplevel_page_mnssp_templates, ul#adminmenu #toplevel_page_mnssp_t
     font-weight: 600;
     font-size: 16px;
     text-decoration: unset;
-    color: #fff;
     padding: 10px 30px 10px 30px;
-    background-color: #0053E9;
     width: fit-content;
     border-radius: 7px;
     box-shadow: 0px 4px 8px rgb(0 0 0 / 20%);

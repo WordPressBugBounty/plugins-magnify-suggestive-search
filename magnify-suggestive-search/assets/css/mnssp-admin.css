@@ -417,7 +417,7 @@ select:focus {
 .mnssp-image-wrap {
     position: relative;
     border-bottom: 1px solid #e8e8e8;
-    height: 525px;
+    height: 300px;
 }
 .mnssp-image-wrap img {
     height: 100%;
@@ -533,16 +533,38 @@ select:focus {
     font-size: 17px;
     padding: 12px 26px;
     display: inline-block;
-    background-color: #4a87f9;
+    background-color: #f15b26;
     border-radius: 5px;
     margin-top: 10px;
     font-weight: 500;
     transition: 0.3s ease-in-out;
     &:hover {
-        background-color: #2673ff;
+        background-color: #f15b26;
     }
 }
+.mnssp-grid-item-price {
+    padding: 0px 15px 15px 15px;
+    color: #000;
+    font-size: 16px;
+}
+span.mnssp-offer-code {
+    background: #f9f9bc;
+    color: #fe4c1c;
+    padding: 5px 12px;
+    text-transform: none;
+    font-weight: 600;
+    margin: 0 6px;
+}
 
+.mnssp-offer-wrap {
+    text-align: center;
+    font-weight: 600;
+    font-size: 18px;
+    text-transform: capitalize;
+    margin-top: 40px;
+    line-height: 2;
+    letter-spacing: 0px;
+}
 
 @media (max-width: 1199px) and (min-width: 992px) {
     .mnssp-main-content-row .mnssp-right-content {

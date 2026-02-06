@@ -17,7 +17,6 @@ function mnssp_save_search_bar() {
             wp_send_json_error(array('message' => 'Invalid form data.'));
             return;
         }
-
         $form_data = array();
         parse_str($form_data_raw, $form_data);
 
@@ -29,6 +28,12 @@ function mnssp_save_search_bar() {
             : array();
 
         $icon_picker = isset($form_data['mnssp_icon_picker']) ? sanitize_text_field($form_data['mnssp_icon_picker']) : '';
+        $search_scope = isset($form_data['mnssp_search_scope']) ? sanitize_text_field($form_data['mnssp_search_scope']) : 'title';
+        $priority = isset($form_data['mnssp_priority']) ? sanitize_text_field($form_data['mnssp_priority']) : 'relevance';
+        $exclude_ids = isset($form_data['mnssp_exclude_ids']) ? sanitize_text_field($form_data['mnssp_exclude_ids']) : '';
+        $exclude_categories = isset($form_data['mnssp_exclude_categories']) ? sanitize_text_field($form_data['mnssp_exclude_categories']) : '';
+        $limit_per_page = isset($form_data['mnssp_limit_per_page']) ? sanitize_text_field($form_data['mnssp_limit_per_page']) : '';
+
 
         $post_id = isset($form_data['post_id']) ? intval($form_data['post_id']) : 0;
 
@@ -46,6 +51,11 @@ function mnssp_save_search_bar() {
                     'template_type' => $template_type,
                     'posttypes'      => $posttypes,
                     'icon_picker'    => $icon_picker,
+                    'search_scope' => $search_scope,
+                    'priority' => $priority,
+                    'exclude_ids' => $exclude_ids,
+                    'exclude_categories' => $exclude_categories,
+                    'limit_per_page' => $limit_per_page,
                 ),
             );
 
@@ -65,6 +75,11 @@ function mnssp_save_search_bar() {
                     'template_type' => $template_type,
                     'posttypes'      => $posttypes,
                     'icon_picker'    => $icon_picker,
+                    'search_scope' => $search_scope,
+                    'priority' => $priority,
+                    'exclude_ids' => $exclude_ids,
+                    'exclude_categories' => $exclude_categories,
+                    'limit_per_page' => $limit_per_page,
                 ),
             ));
             
@@ -90,6 +105,13 @@ function mnssp_autocomplete_search() {
     $mnssp_settings = get_option('mnssp_settings');
     $no_result_label = isset($mnssp_settings['no_result_label']) && $mnssp_settings['no_result_label'] != '' ? $mnssp_settings['no_result_label'] : 'No post available';
 
+
+    $bar_id = isset($_GET['bar_id']) ? intval($_GET['bar_id']) : 0;
+    $search_scope = get_post_meta($bar_id, 'search_scope', true) ?: 'title';
+    $priority = get_post_meta($bar_id, 'priority', true);
+    $exclude_ids = get_post_meta($bar_id, 'exclude_ids', true);
+    $exclude_categories = get_post_meta($bar_id, 'exclude_categories', true);
+
     $args = array(
         'post_type'   => $post_types,
         'post_status' => 'publish',
@@ -98,7 +120,50 @@ function mnssp_autocomplete_search() {
         'fields'      => 'ids',
     );
 
-    add_filter('posts_where', 'mnssp_title_like_posts_where', 10, 2);
+    if ($priority === 'date') {
+        $args['orderby'] = 'date';
+        $args['order'] = 'DESC';
+    } elseif ($priority === 'views') {
+        $args['meta_key'] = 'post_views_count';
+        $args['orderby'] = 'meta_value_num';
+        $args['order'] = 'DESC';
+    } elseif ($priority === 'manual') {
+        $args['meta_key'] = 'mnssp_priority';
+        $args['orderby'] = 'meta_value_num';
+    }
+
+    if (!empty($exclude_ids)) {
+        $args['post__not_in'] = array_map('intval', explode(',', $exclude_ids));
+    }
+    
+    if (!empty($exclude_categories)) {
+        $args['tax_query'] = array(
+            array(
+                'taxonomy' => 'category',
+                'field' => 'term_id',
+                'terms' => array_map('intval', explode(',', $exclude_categories)),
+                'operator' => 'NOT IN'
+            )
+        );
+    }
+    
+
+    // add_filter('posts_where', 'mnssp_title_like_posts_where', 10, 2);
+    add_filter('posts_where', function ($where, $wp_query) use ($search_scope, $term, $wpdb) {
+        $like = '%' . $wpdb->esc_like($term) . '%';
+    
+        if ($search_scope === 'title') {
+            $where .= $wpdb->prepare(" AND $wpdb->posts.post_title LIKE %s", $like);
+        } elseif ($search_scope === 'excerpt') {
+            $where .= $wpdb->prepare(" AND $wpdb->posts.post_excerpt LIKE %s", $like);
+        } elseif ($search_scope === 'content') {
+            $where .= $wpdb->prepare(" AND $wpdb->posts.post_content LIKE %s", $like);
+        } else {
+            $where .= $wpdb->prepare(" AND ($wpdb->posts.post_title LIKE %s OR $wpdb->posts.post_excerpt LIKE %s OR $wpdb->posts.post_content LIKE %s)", $like, $like, $like);
+        }
+    
+        return $where;
+    }, 10, 2);
 
     $query = new WP_Query($args);
 

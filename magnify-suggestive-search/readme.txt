@@ -1,10 +1,10 @@
 === Magnify - Suggestive Search Plugin ===
 Contributors: themagnifico52
-Tags: woocommerce-search, ajax-search, search-by-keywords, product-search
+Tags: search, woocommerce, woocommerce-search, product-search, ajax-search
 Requires at least: 5.2
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.1.0
+Stable tag: 1.1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,6 +13,8 @@ Real-time search suggestions that display relevant results as users type. Easy t
 == Description ==
 
 Enhance your WordPress site’s search experience with our powerful Suggestive Search Plugin. This plugin offers intelligent, real-time search suggestions as users type, helping them find the content they need faster and more accurately. With advanced algorithms, it predicts what users are searching for and displays relevant results instantly.
+
+**[WordPress Theme Bundle](https://www.themagnifico.net/products/wordpress-theme-bundle) | [Premium Templates](https://www.themagnifico.net/collections/responsive-wordpress-themes)**
 
 **Key Features**
 
@@ -38,6 +40,27 @@ Suggestive Search Plugin can be effortlessly utilized across various WordPress b
 Suggestive Search Plugin for WordPress is a versatile tool that enhances the search experience on your site with real-time, predictive suggestions. Its easy integration ensures compatibility with a wide range of WordPress builders and themes without requiring any coding. By offering features like AJAX search, WooCommerce support, and customizable appearance options, it provides a seamless, efficient, and user-friendly solution to boost content discovery and improve user engagement. Elevate your site’s search functionality effortlessly and make finding content easier than ever.
 
 == Changelog ==
+
+= 1.1.5 - 2026-07-01 =
+* Added  select 2 options, result limits per search bar.
+* Minor Bugs Fixed related to css.
+
+= 1.1.4 - 2025-16-12 =
+* Added search bar width and height settings.
+* Minor Bugs Fixes.
+
+= 1.1.3 - 2025-21-10 =
+* Minor Dashboard UI Fixes.
+* Added lazy loading to the template images.
+
+= 1.1.2 - 2025-21-10 =
+* Minor Dashboard UI Fixes.
+
+= 1.1.1 - 2025-13-10 =
+* Added search scope option to filter results by title, content, or excerpt.
+* Enhanced result prioritization with support for relevance, views, and newest settings.
+* Added Exclude Post IDs & Exclude Categories (IDs) options.
+* Minor code refactoring and style adjustments for better UX.
 
 = 1.1.0 - 2025-13-06 =
 * Minor Bugs Fixes.
