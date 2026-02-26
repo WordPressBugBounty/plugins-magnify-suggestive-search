@@ -1,5 +1,8 @@
 <?php
-
+// Exit if accessed directly
+if ( !defined( 'ABSPATH' ) ) {
+    exit;
+}
 function mnssp_get_search_bar_data($post_id) {
     $post = get_post($post_id);
 
@@ -31,13 +34,13 @@ function mnssp_modify_search_query($query) {
             $query->set('posts_per_page', intval($mnssp_settings['limit']));
         }
 
-        if (!empty($_GET['limit_per_page'])) {
-            $query->set('posts_per_page', intval($_GET['limit_per_page']));
-            $query->set('no_found_rows', true);
-        }
-
         // Check nonce and post types
-        if (isset($_GET['_wpnonce']) && wp_verify_nonce(wp_unslash($_GET['_wpnonce']), 'mnssp_search_nonce')) {
+        if (isset($_GET['_wpnonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_GET['_wpnonce'])), 'mnssp_search_nonce')) {
+
+            if (!empty($_GET['limit_per_page'])) {
+                $query->set('posts_per_page', intval($_GET['limit_per_page']));
+                $query->set('no_found_rows', true);
+            }
 
             // Post types
             if (!empty($_GET['post_type'])) {

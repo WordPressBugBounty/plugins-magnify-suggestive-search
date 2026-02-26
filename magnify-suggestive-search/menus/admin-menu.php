@@ -1,4 +1,8 @@
 <?php
+// Exit if accessed directly
+if ( !defined( 'ABSPATH' ) ) {
+    exit;
+}
 add_action('admin_menu', 'mnssp_register_admin_menu');
 add_action('admin_menu', function () {
     remove_submenu_page('mnssp_dashboard', 'mnssp_dashboard');
