@@ -13,6 +13,9 @@ $mnssp_search_bar_width = isset($search_bar_data['search_bar_width']) ? $search_
 $mnssp_custom_width = isset($search_bar_data['custom_width']) ? $search_bar_data['custom_width'] : '400px';
 $mnssp_limit_per_page = isset($search_bar_data['limit_per_page']) ? $search_bar_data['limit_per_page'] : 10;
 
+// Overlay background color
+$mnssp_overlay_bg_color = isset($search_bar_data['overlay_bg_color']) ? $search_bar_data['overlay_bg_color'] : 'rgba(0,0,0,0.9)';
+
 $mnssp_width_style = '';
 if ($mnssp_search_bar_width === 'full') {
     $mnssp_width_style = 'width: 100%; max-width: 100%;';
@@ -43,7 +46,7 @@ $mnssp_priority = isset($search_bar_data['priority']) ? $search_bar_data['priori
 $mnssp_exclude_ids = isset($search_bar_data['exclude_ids']) ? $search_bar_data['exclude_ids'] : '';
 $mnssp_exclude_categories = isset($search_bar_data['exclude_categories']) ? $search_bar_data['exclude_categories'] : '';
 ?>
-<div id="mnssp-overlay-template" class="overlay">
+<div id="mnssp-overlay-template" class="overlay" style="background-color: <?php echo esc_attr($mnssp_overlay_bg_color); ?>;">
     <span class="closebtn" title="Close Overlay">×</span>
     <div class="overlay-content">
 

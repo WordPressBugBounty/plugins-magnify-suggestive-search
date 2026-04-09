@@ -113,15 +113,19 @@ function mnssp_autocomplete_search()
 
 
     $bar_id = isset($_GET['bar_id']) ? intval($_GET['bar_id']) : 0;
-    $search_scope = get_post_meta($bar_id, 'search_scope', true) ?: 'title';
-    $priority = get_post_meta($bar_id, 'priority', true);
-    $exclude_ids = get_post_meta($bar_id, 'exclude_ids', true);
-    $exclude_categories = get_post_meta($bar_id, 'exclude_categories', true);
+
+    // Get search settings from the search bar post meta
+    $search_scope = !empty($bar_id) ? get_post_meta($bar_id, 'search_scope', true) : 'title';
+    if (empty($search_scope)) {
+        $search_scope = 'title';
+    }
+    $priority = !empty($bar_id) ? get_post_meta($bar_id, 'priority', true) : 'relevance';
+    $exclude_ids = !empty($bar_id) ? get_post_meta($bar_id, 'exclude_ids', true) : '';
+    $exclude_categories = !empty($bar_id) ? get_post_meta($bar_id, 'exclude_categories', true) : '';
 
     $args = array(
         'post_type' => $post_types,
         'post_status' => 'publish',
-        'title_like' => $term,
         'posts_per_page' => -1,
         'fields' => 'ids',
     );
@@ -157,9 +161,12 @@ function mnssp_autocomplete_search()
         );
     }
 
+    // Define the filter callback function
+    $mnssp_search_where_callback = function ($where, $wp_query) use ($search_scope, $term, $wpdb) {
+        if (empty($term)) {
+            return $where;
+        }
 
-    // add_filter('posts_where', 'mnssp_title_like_posts_where', 10, 2);
-    add_filter('posts_where', function ($where, $wp_query) use ($search_scope, $term, $wpdb) {
         $like = '%' . $wpdb->esc_like($term) . '%';
 
         if ($search_scope === 'title') {
@@ -173,11 +180,15 @@ function mnssp_autocomplete_search()
         }
 
         return $where;
-    }, 10, 2);
+    };
+
+    // Add the filter with a stored reference
+    add_filter('posts_where', $mnssp_search_where_callback, 10, 2);
 
     $query = new WP_Query($args);
 
-    remove_filter('posts_where', 'mnssp_title_like_posts_where', 10, 2);
+    // Remove the filter using the stored reference
+    remove_filter('posts_where', $mnssp_search_where_callback, 10);
 
     $suggestions = array();
     if ($query->have_posts()) {

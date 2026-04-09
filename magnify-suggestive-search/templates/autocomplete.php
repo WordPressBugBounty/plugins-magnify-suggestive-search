@@ -21,6 +21,11 @@ $mnssp_custom_width = isset($search_bar_data['custom_width']) ? $search_bar_data
 $mnssp_icon_picker = isset($search_bar_data['icon_picker']) ? $search_bar_data['icon_picker'] : 'fas fa-search';
 $mnssp_limit_per_page = isset($search_bar_data['limit_per_page']) ? $search_bar_data['limit_per_page'] : 10;
 
+// New autocomplete color settings
+$mnssp_results_bg_color = isset($search_bar_data['mnssp_settings']['results_bg_color']) ? $search_bar_data['mnssp_settings']['results_bg_color'] : '#ffffff';
+$mnssp_results_text_color = isset($search_bar_data['mnssp_settings']['results_text_color']) ? $search_bar_data['mnssp_settings']['results_text_color'] : '#333333';
+$mnssp_results_hover_color = isset($search_bar_data['mnssp_settings']['results_hover_color']) ? $search_bar_data['mnssp_settings']['results_hover_color'] : '#f5f5f5';
+
 $mnssp_width_style = '';
 if ($mnssp_search_bar_width === 'full') {
     $mnssp_width_style = 'width: 100%; max-width: 100%;';
@@ -53,7 +58,10 @@ $mnssp_exclude_categories = isset($search_bar_data['exclude_categories']) ? $sea
 ?>
 
 
-<form action="<?php echo esc_url(home_url('/')); ?>" method="get" id="mnssp-autocomplete-form" class="mnssp-search-bar"
+<form action="<?php echo esc_url(home_url('/')); ?>" method="get" id="mnssp-autocomplete-form" class="mnssp-search-bar" data-bar-id="<?php echo esc_attr($bar_id); ?>"
+    data-results-bg="<?php echo esc_attr($mnssp_results_bg_color); ?>"
+    data-results-text="<?php echo esc_attr($mnssp_results_text_color); ?>"
+    data-results-hover="<?php echo esc_attr($mnssp_results_hover_color); ?>"
     style="border-color: <?php echo esc_attr($mnssp_border_color); ?>; <?php echo esc_attr($mnssp_width_style); ?> <?php echo esc_attr($mnssp_height_style); ?>">
     <input type="text" name="s" id="mnssp-autocomplete-input" autocomplete="off"
         placeholder="<?php echo esc_html($mnssp_placeholder_text); ?>"
