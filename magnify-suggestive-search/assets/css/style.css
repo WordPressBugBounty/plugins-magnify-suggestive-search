@@ -80,11 +80,6 @@ img.plug-logo {
     width: 94px;
     height: 42px;
 }
-
-/* .mnssp-notice-banner-wrap {
-    display: flex;
-    background-size: 100% 100%;
-} */
 .mnssp-notice-heading p.mnssp-sub-head {
     margin-top: 0;
     margin-bottom: 0;
@@ -146,7 +141,7 @@ a.mnssp-buy-btn {
     opacity: 1;
 }
 
-.wp-core-ui .notice.is-dismissible {
+.wp-core-ui .notice.is-dismissible.mnssp {
     padding-right: 0;
     padding-left: 0;
 }

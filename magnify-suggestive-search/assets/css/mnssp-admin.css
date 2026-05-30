@@ -63,7 +63,7 @@
 }
 
 .regular-text:focus {
-    border-color: #007cba;
+    border-color: #2673ff;
     box-shadow: 0 0 3px rgba(0, 124, 186, 0.5);
 }
 
@@ -80,7 +80,7 @@ select {
 }
 
 select:focus {
-    border-color: #007cba;
+    border-color: #2673ff;
     box-shadow: 0 0 3px rgba(0, 124, 186, 0.5);
 }
 
@@ -96,7 +96,7 @@ select:focus {
 }
 
 .mnssp-multiselect:focus {
-    border-color: #007cba;
+    border-color: #2673ff;
     box-shadow: 0 0 3px rgba(0, 124, 186, 0.5);
 }
 
@@ -108,7 +108,7 @@ select:focus {
 }
 
 .wp-core-ui .button-primary {
-    background: #007cba;
+    background: #2673ff;
     border-color: #006ba1;
     text-shadow: none;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -615,7 +615,7 @@ span.mnssp-offer-code {
 
 /* Add New Button */
 .mnssp-page-header .page-title-action {
-    background: #2271b1;
+    background: #2673ff;
     color: #fff;
     border-radius: 4px;
     padding: 6px 14px;
@@ -624,7 +624,7 @@ span.mnssp-offer-code {
 }
 
 .mnssp-page-header .page-title-action:hover {
-    background: #135e96;
+    background: #2673ff;
     color: #fff;
 }
 

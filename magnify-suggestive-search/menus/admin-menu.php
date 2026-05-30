@@ -97,7 +97,7 @@ function mnssp_dashboard_page()
                 <div class="mnssp-left-content">
                     <div class="mnssp-templates-logo">
                         <div>
-                            <img src="<?php echo esc_url(MNSSP_URL . 'assets/images/logo.png'); ?>">
+                            <img src="<?php echo esc_url('https://www.themagnifico.net/cdn/shop/files/06b7703a-9bf1-42d3-9d9e-f550ff568a9c_200x200-1.webp?v=1717679122&width=600'); ?>">
                         </div>
                     </div>
 
