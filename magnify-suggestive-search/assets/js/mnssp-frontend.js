@@ -18,8 +18,27 @@ jQuery(document).ready(function($) {
     var resultsTextColor = $('#mnssp-autocomplete-form').data('results-text') || '#333333';
     var resultsHoverColor = $('#mnssp-autocomplete-form').data('results-hover') || '#f5f5f5';
 
+    function mnssp_escape_regex(text) {
+        return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    function mnssp_highlight_match(label, term) {
+        var escapedLabel = $('<div>').text(label).html();
+
+        if (!term) {
+            return escapedLabel;
+        }
+
+        var pattern = new RegExp('(' + mnssp_escape_regex(term) + ')', 'gi');
+        return escapedLabel.replace(pattern, '<mark class="mnssp-suggestion-highlight">$1</mark>');
+    }
+
+    var mnssp_current_term = '';
+
     $('#mnssp-autocomplete-input').autocomplete({
         source: function(request, response) {
+            mnssp_current_term = request.term;
+
             $.ajax({
                 url: mnssp_frontend_object.ajaxurl,
                 dataType: 'json',
@@ -37,10 +56,10 @@ jQuery(document).ready(function($) {
                             value: item.value
                         };
                     }));
-                }    
+                }
             });
         },
-        select: function(event, ui) {            
+        select: function(event, ui) {
             if (ui.item.value !== '#') {
                 window.location.href = ui.item.value;
             } else {
@@ -57,9 +76,11 @@ jQuery(document).ready(function($) {
             });
         }
     }).autocomplete("instance")._renderItem = function(ul, item) {
-        // Custom render to apply colors to each item
+        // Custom render to apply colors to each item, highlighting the matched term
+        var highlightedLabel = mnssp_highlight_match(item.label, mnssp_current_term);
+
         return $("<li>")
-            .append("<div style='padding: 5px 10px; background-color: " + resultsBgColor + "; color: " + resultsTextColor + ";'>" + item.label + "</div>")
+            .append("<div style='padding: 5px 10px; background-color: " + resultsBgColor + "; color: " + resultsTextColor + ";'>" + highlightedLabel + "</div>")
             .appendTo(ul)
             .hover(function() {
                 $(this).find('div').css('background-color', resultsHoverColor);

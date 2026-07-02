@@ -29,6 +29,13 @@
     text-decoration: none;
 }
 
+.mnssp-suggestion-highlight {
+    background: none;
+    color: inherit;
+    font-weight: 700;
+    padding: 0;
+}
+
 #mnssp-autocomplete-form {
   max-width: 550px;
   display: flex;
