@@ -362,7 +362,7 @@ function mnssp_create_search_bar_page()
 function mnssp_display_search_bar_page()
 {
 
-    $paged = 0;
+    $paged = 1;
     if (isset($_GET['paged']) && isset($_GET['nonce'])) {
         $nonce = sanitize_text_field(wp_unslash($_GET['nonce']));
         if (wp_verify_nonce($nonce, 'mnssp_pagination_nonce')) {
@@ -370,7 +370,6 @@ function mnssp_display_search_bar_page()
         }
     }
 
-    $paged = isset($_GET['paged']) ? intval($_GET['paged']) : 1;
     $posts_per_page = 10;
 
     $args = array(
@@ -425,7 +424,7 @@ function mnssp_display_search_bar_page()
                         <tr>
                             <td><?php the_title(); ?></td>
                             <td><?php echo esc_html($template_type); ?></td>
-                            <td><?php echo esc_html(implode(', ', $posttypes)); ?></td>
+                            <td><?php echo esc_html(implode(', ', (array) $posttypes)); ?></td>
                             <td><?php echo isset($icon_class) ? wp_kses($icon_class, $allowed_html) : ''; ?></td>
                             <td class="shortcode-column"><?php echo esc_html($shortcode); ?></td>
                             <td>
@@ -515,7 +514,6 @@ function mnssp_edit_search_bar_page()
     $icon_picker = isset($search_bar['icon_picker']) ? $search_bar['icon_picker'] : '';
     $post_types_arr = isset($search_bar['post_types']) ? $search_bar['post_types'] : array();
     $search_scope = isset($search_bar['search_scope']) ? $search_bar['search_scope'] : array();
-    $priority = isset($search_bar['priority']) ? $search_bar['priority'] : array();
     $priority = isset($search_bar['priority']) ? $search_bar['priority'] : array();
     $exclude_ids = isset($search_bar['exclude_ids']) ? $search_bar['exclude_ids'] : '';
     $exclude_categories = isset($search_bar['exclude_categories']) ? $search_bar['exclude_categories'] : '';

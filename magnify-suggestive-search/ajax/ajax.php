@@ -213,14 +213,3 @@ function mnssp_autocomplete_search()
 add_action('wp_ajax_mnssp_autocomplete_search', 'mnssp_autocomplete_search');
 add_action('wp_ajax_nopriv_mnssp_autocomplete_search', 'mnssp_autocomplete_search');
 
-function mnssp_title_like_posts_where($where, $wp_query)
-{
-    global $wpdb;
-
-    if ($title_like = $wp_query->get('title_like')) {
-        $where .= $wpdb->prepare(" AND $wpdb->posts.post_title LIKE %s", '%' . $wpdb->esc_like($title_like) . '%');
-    }
-
-    return $where;
-}
-
